@@ -16,20 +16,23 @@ namespace ArchivosXML
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Cada vez que se corre el programa, se cargan las universidades existentes en el archivo Json
+            if (!IsPostBack)
+            {
+                //Cada vez que se corre el programa, se cargan las universidades existentes en el archivo Json
 
-            //se usará el archivo de universidades
-            string archivo = Server.MapPath("Universidades.json");
-            //se abre el archivo
-            StreamReader jsonStream = File.OpenText(archivo);            
+                //se usará el archivo de universidades
+                string archivo = Server.MapPath("Universidades.json");
+                //se abre el archivo
+                StreamReader jsonStream = File.OpenText(archivo);
 
-            //se lee todo el contenido del archivo y el contenido se guarda en la variable json
-            string json = jsonStream.ReadToEnd();
+                //se lee todo el contenido del archivo y el contenido se guarda en la variable json
+                string json = jsonStream.ReadToEnd();
 
-            jsonStream.Close();
+                jsonStream.Close();
 
-            //Se deserializa (convierte) la cadena json en la estructura que tiene la lista universidades
-            universidades = JsonConvert.DeserializeObject<List<Universidades>>(json);
+                //Se deserializa (convierte) la cadena json en la estructura que tiene la lista universidades
+                universidades = JsonConvert.DeserializeObject<List<Universidades>>(json);
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)

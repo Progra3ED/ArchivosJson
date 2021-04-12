@@ -52,7 +52,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Inicio</a></li>                       
-                        <li><a runat="server" href="~/Contact">Mostrar Datos</a></li>
+                        <li><a runat="server" href="~/Contact">Mostrar Datos</a></li>                        
+                        <li><a runat="server" href="~/Listado">Listado de datos</a></li>                        
                     </ul>
                 </div>
             </div>

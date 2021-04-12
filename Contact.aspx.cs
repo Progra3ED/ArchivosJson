@@ -22,6 +22,8 @@ namespace ArchivosXML
             //se lee todo el contenido del archivo y el contenido se guarda en la variable json
             string json = jsonStream.ReadToEnd();
 
+            jsonStream.Close();
+
             //Se deserializa (convierte) la cadena json en la estructura que tiene la lista universidades
             universidades = JsonConvert.DeserializeObject<List<Universidades>>(json);
 
