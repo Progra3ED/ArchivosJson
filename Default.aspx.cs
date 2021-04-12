@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,9 +13,23 @@ namespace ArchivosXML
     {
         static List<Universidades> universidades = new List<Universidades>();
         static List<Estudiante> estudiantes = new List<Estudiante>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Cada vez que se corre el programa, se cargan las universidades existentes en el archivo Json
 
+            //se usará el archivo de universidades
+            string archivo = Server.MapPath("Universidades.json");
+            //se abre el archivo
+            StreamReader jsonStream = File.OpenText(archivo);            
+
+            //se lee todo el contenido del archivo y el contenido se guarda en la variable json
+            string json = jsonStream.ReadToEnd();
+
+            jsonStream.Close();
+
+            //Se deserializa (convierte) la cadena json en la estructura que tiene la lista universidades
+            universidades = JsonConvert.DeserializeObject<List<Universidades>>(json);
         }
 
         protected void Button1_Click(object sender, EventArgs e)
