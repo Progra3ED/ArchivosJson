@@ -37,15 +37,26 @@ namespace ArchivosXML
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            Universidades universidad = new Universidades();
-            universidad.Universidad = TextBoxUniversidad.Text;
-            universidad.Estudiantes = estudiantes.ToList();
+            Universidades uni = universidades.Find(u => u.Universidad == TextBoxUniversidad.Text);
 
-            universidades.Add(universidad);
+            if (uni.Universidad.Length == 0)
+            {
+                Universidades universidad = new Universidades();
+                universidad.Universidad = TextBoxUniversidad.Text;
+                universidad.Estudiantes = estudiantes.ToList();
 
-            GuardarJson();
+                universidades.Add(universidad);
 
-            estudiantes.Clear();
+                GuardarJson();
+
+                estudiantes.Clear();
+            }
+            else
+            {
+                uni.Estudiantes = estudiantes;
+                GuardarJson();
+            
+            }
         }
 
         private void GuardarJson()
@@ -57,6 +68,12 @@ namespace ArchivosXML
 
         protected void ButtonAlumno_Click(object sender, EventArgs e)
         {
+
+            Universidades uni = universidades.Find(u => u.Universidad == TextBoxUniversidad.Text);
+            
+            if (uni.Estudiantes.Count > 0)
+                estudiantes = uni.Estudiantes;
+
             Estudiante estudiante = new Estudiante();
             estudiante.Nombre = TextBoxAlumno.Text;
 
