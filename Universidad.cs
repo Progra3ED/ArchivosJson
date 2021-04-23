@@ -5,11 +5,8 @@ using System.Web;
 
 namespace ArchivosXML
 {
-    public class Estudiante {
-        string nombre;
+   
 
-        public string Nombre { get => nombre; set => nombre = value; }
-    }
     public class Universidades
     {
         string universidad;
